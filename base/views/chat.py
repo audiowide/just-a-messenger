@@ -9,7 +9,7 @@ def chats(request):
    context = {
       
    }
-   return render(request, 'base/Home.html', context)
+   return render(request, 'base/Chat.html', context)
 
 @login_required(login_url='base:sign-in')
 def chat(request):

@@ -1,0 +1,63 @@
+{% include 'main.html' %}
+
+{% load static  %}
+
+{% block title %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{%  if page_type == 'sign_in' %}
+<title>Sign In</title>
+{% else %}
+<title>Sign Up</title>
+{% endif %}
+{% endblock title %}
+
+{% block content %}
+<div class="pre__form" >
+   <div class="form">
+      <img src="https://images.pexels.com/photos/1545499/pexels-photo-1545499.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="auth form">
+
+   <form method="POST" >
+      {% csrf_token %}
+
+      {%  if page_type == 'sign_in' %}
+         <h2>Sign In</h2>
+
+         <input type="email" name="email" placeholder="Email..." required/>
+         <input type="password" name="password" placeholder="Password..." required/>
+      {% else %}
+      <h2>Sign Up</h2>
+
+      {% for field in form  %}
+         <div class = "form__component">
+            {% if field.errors %}
+            <ul class="errorlist">
+               {% for error in field.errors %}
+               <li>{{ error }}</li>
+               {% endfor %}
+            </ul>
+            {% endif %}
+            {{ field }}
+         </div>
+      {% endfor %}
+
+      {% endif %}
+      <button class="btn">Continue</button>
+
+      {% comment %} or  {% endcomment %}
+
+      {% comment %} <div class="social__register"> {% endcomment %}
+         {% comment %} <a href="{% provider_login_url 'google' %}"><i class="fa-brands fa-google"></i></a> {% endcomment %}
+         {% comment %} <a href="{% provider_login_url 'facebook' method='oauth2' %}"><i class="fa-brands fa-facebook"></i></a> {% endcomment %}
+      {% comment %} </div> {% endcomment %}
+      <div class="pre__form__another">
+         {%  if page_type == 'sign_in' %}
+         or <a href="{% url 'base:sign-up' %}"> Sign Up</a>
+         {% else %}
+         or <a href="{% url 'base:sign-in' %}"> Sign In</a>
+         {% endif %}
+      </div>
+   </form>  
+   </div>
+
+</div>
+{% endblock content %}
