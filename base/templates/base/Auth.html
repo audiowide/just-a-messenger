@@ -27,18 +27,17 @@
       {% else %}
       <h2>Sign Up</h2>
 
-      {% for field in form  %}
-         <div class = "form__component">
-            {% if field.errors %}
-            <ul class="errorlist">
-               {% for error in field.errors %}
-               <li>{{ error }}</li>
-               {% endfor %}
-            </ul>
-            {% endif %}
-            {{ field }}
-         </div>
-      {% endfor %}
+      <div class = "form__component">
+         <input type="text" name="username" placeholder="Enter your username..." required />
+      </div>
+
+      <div class = "form__component">
+         <input type="email" name="email" placeholder="Enter your email..." required />
+      </div>
+
+      <div class = "form__component">
+         <input type="password" name="password" placeholder="Enter your password..." required />
+      </div>
 
       {% endif %}
       <button class="btn">Continue</button>

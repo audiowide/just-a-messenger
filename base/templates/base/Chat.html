@@ -15,8 +15,10 @@
       <div class="form__left">
          <div class="form__left__header">
             <div class="header__left">
-               <i class="fa-solid fa-bars icon show__menu" ></i>
-               <div class="header__left__menu">
+               <div class="icon show__menu" >
+                  <i class="fa-solid fa-bars"></i>
+               </div>
+               <div class="header__left__menu" style="display: none;">
                   <a href="{% url 'base:settings' %}" class="settings">Settings</a>
                   <a href="{% url 'base:sign-out' %}" class="logout">Logout</a>
                </div>

@@ -165,7 +165,7 @@
 }
 
 .messages {
-   padding: 50px 0;
+   padding: 50px 0 60px;
    overflow-y: scroll;
    width: 100%;
    border-radius: 20px;
