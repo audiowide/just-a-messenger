@@ -51,9 +51,9 @@
       {% comment %} </div> {% endcomment %}
       <div class="pre__form__another">
          {%  if page_type == 'sign_in' %}
-         or <a href="{% url 'base:sign-up' %}"> Sign Up</a>
+         or <a href="{% url 'base:sign-up' %}" class="link"> Sign Up</a>
          {% else %}
-         or <a href="{% url 'base:sign-in' %}"> Sign In</a>
+         or <a href="{% url 'base:sign-in' %}"  class="link"> Sign In</a>
          {% endif %}
       </div>
    </form>  

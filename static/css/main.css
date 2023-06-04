@@ -57,11 +57,11 @@ body::before {
    background-color: #141414;
    color: white;
 }
-a {
+.link {
    color: #17D58F;
    transition: all .3s ease-in-out;
 }
-a:hover {
+.link:hover {
    color: aliceblue;
    font-weight: bold;
 }
@@ -77,4 +77,32 @@ input {
 input:hover, input:focus {
    background-color: #17d58f28;
    box-shadow: 1px 1px 10px 0px #17D58F;
+}
+
+.messages {
+   
+}
+.message {
+   position: fixed;
+   top:10vh;
+   z-index: 10;
+   background-color: black;
+   padding: 10px ;
+   border-radius: 10px;
+   font-size: 22px;
+
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 10px;
+
+   right: 30vw;
+   left: 30vw;
+   box-shadow: 0 0 10px 0px #17D58F;
+}
+
+.message .message_close:hover {
+   color: #17D58F;
+   background-color: #141414;
+   border-radius: 100%;
 }

@@ -14,11 +14,102 @@
       
       <div class="form__left">
          <div class="form__left__header">
+            <div class="header__left">
+               <i class="fa-solid fa-bars icon"></i>
+               <!-- <img src="/media/{{request.user.profile.image}}" alt="{{request.user.profile.image}}"> -->
+               <h3>{{request.user.username}}</h3>
+            </div>
+            <!-- <form class="header__center">
+               {% csrf_token %}
+               <input type="text"  name="search" placeholder="search...">
+            </form> -->
+            <div class="header__center">
+              <a href="{% url 'base:create-chat' %}" class="btn">+ </a>
+            </div>
+         </div>
+         <div class="form__left__chats">
             
          </div>
       </div>
 
-      <div class="form__right"></div>
+      <div class="form__right">
+
+         {% if type == 'create' %}
+            <form action="" method="POST" class="create_new_chate">
+               {% csrf_token %}
+               <input 
+                  type="email" 
+                  name="email" 
+                  placeholder="Enter user email..."
+                  required>
+               <button class="btn" type="submit">Create<button>
+            </form>
+         {% else %}
+        <div class="pre__messages">
+         <div class="pre__messages__header">
+            <div class="pre__messages__header__left">
+               {% if request.user == one_chat.user1 %}
+               <img src="/media/{{one_chat.user2.profile.image}}" alt="{{one_chat.user2.profile.image}}">
+               <section class="data">
+                  <b>{{one_chat.user2.username}}</b>
+                  <p>{{one_chat.user2.email}}</p>
+               </section>
+               {% else %}
+               <img src="/media/{{one_chat.user1.profile.image}}" alt="{{one_chat.user2.profile.image}}">
+               <section class="data">
+                  <b>{{one_chat.user1.username}}</b>
+                  <p>{{one_chat.user1.email}}</p>
+               </section>
+               {% endif %}
+            </div>
+            <div class="pre__messages__header__right">
+               <i class="fa-solid fa-ban"></i>
+            </div>
+         </div>
+         <div class="messages">
+            {% for message in texts %}
+               <div 
+               class="mess"
+               {% if message.user == request.user %}
+                  style="background-color: rgba(23, 213, 143, 1); color: black;"
+               {% endif %}
+            >
+            <div class="mess__content">
+               <p>{{message.message}}</p>
+               {% if message.user == request.user %}
+               <p>
+                  <a 
+                     class="fa-solid fa-trash icon"
+                  ></a>
+                  <a class="fa-solid fa-copy icon"></a>
+               </p>
+               {% endif %}
+            </div>
+            <p 
+            class="mess_time"
+            {% if message.user == request.user %}
+               style="color: rgb(0,0,0,.7)"
+            {% endif %}
+            >{{ message.updated }}</p>
+            </div>
+            {% endfor %}
+         </div>
+         <form action="" method="POST" class="pre__messages__form">
+             {% csrf_token %}
+             <input 
+               type="text" 
+               name="message" 
+               placeholder="Enter your message..."
+               required
+               />
+               <button type="submit" class="btn">
+                  <i class="fa-regular fa-paper-plane"></i>
+               </button>
+         </form>
+        </div>
+         {% endif %}
+
+      </div>
 
    </div>
 </div>

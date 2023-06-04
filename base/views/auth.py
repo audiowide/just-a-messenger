@@ -17,7 +17,7 @@ def sign_in(request):
       
       if user is not None:
          login(request, user)
-         return redirect('base:chats')
+         return redirect('base:create-chat')
       else:
          messages.error(request,'Email or password incorrect')
          return redirect('base:sign-in')
@@ -32,12 +32,12 @@ def sign_up(request):
    form = CreateUserForm()
    
    if request.method == 'POST':
-      form = CreateUserForm(request.POST)
-      if form.is_valid():
-         form.save()
+      user = CreateUserForm(request.POST)
+      if user.is_valid():
+         user = user.save()
          
          login(request, user)
-         return redirect('base:chats')
+         return redirect('base:create-chat')
    
    context = {
       'page_type': type,
