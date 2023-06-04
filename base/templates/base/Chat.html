@@ -15,7 +15,11 @@
       <div class="form__left">
          <div class="form__left__header">
             <div class="header__left">
-               <i class="fa-solid fa-bars icon"></i>
+               <i class="fa-solid fa-bars icon show__menu" ></i>
+               <div class="header__left__menu">
+                  <a href="{% url 'base:settings' %}" class="settings">Settings</a>
+                  <a href="{% url 'base:sign-out' %}" class="logout">Logout</a>
+               </div>
                <!-- <img src="/media/{{request.user.profile.image}}" alt="{{request.user.profile.image}}"> -->
                <h3>{{request.user.username}}</h3>
             </div>
@@ -28,7 +32,23 @@
             </div>
          </div>
          <div class="form__left__chats">
-            
+            {% for chat in chats %}
+            <a 
+               class="chat" 
+               href="{% url 'base:chat' chat.slug %}"
+               {% if one_chat %}
+                  {% if chat.slug ==  one_chat.slug %}
+                     style ="   background-color: rgb(23, 213, 143, .9);color: black ;"
+                  {% endif %}
+               {% endif %}
+            >
+               {% if request.user == chat.user1 %}
+               {{ chat.user2.username }}
+               {% else %}
+               {{ chat.user1.username }}
+               {% endif %}
+            </a>
+            {% endfor %}
          </div>
       </div>
 
@@ -64,9 +84,14 @@
             </div>
             <div class="pre__messages__header__right">
                <i class="fa-solid fa-ban"></i>
+               <a 
+                     class="fa-solid fa-trash icon"
+                     href="{% url 'base:chat-delete' one_chat.slug %}"
+                  ></a>
             </div>
          </div>
          <div class="messages">
+            {% if texts|length != 0 %}
             {% for message in texts %}
                <div 
                class="mess"
@@ -75,13 +100,14 @@
                {% endif %}
             >
             <div class="mess__content">
-               <p>{{message.message}}</p>
+               <p class="text_for_copy">{{message.message}}</p>
                {% if message.user == request.user %}
                <p>
                   <a 
                      class="fa-solid fa-trash icon"
+                     href="{% url 'base:message-delete' one_chat.slug message.id %}"
                   ></a>
-                  <a class="fa-solid fa-copy icon"></a>
+                  <a class="fa-solid fa-copy icon copy" ></a>
                </p>
                {% endif %}
             </div>
@@ -93,6 +119,12 @@
             >{{ message.updated }}</p>
             </div>
             {% endfor %}
+            {% else %}
+            <div class="notFound">
+               <h2>Messages Not Found</h2>
+               <i class="fa-solid fa-comment-slash"></i>
+            </div>
+            {% endif %}
          </div>
          <form action="" method="POST" class="pre__messages__form">
              {% csrf_token %}
@@ -113,4 +145,6 @@
 
    </div>
 </div>
+<script src="{% static 'js/copy_message.js' %}"></script>
+<script src="{% static 'js/show_menu.js' %}"></script>
 {% endblock content %}

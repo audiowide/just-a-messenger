@@ -106,3 +106,7 @@ input:hover, input:focus {
    background-color: #141414;
    border-radius: 100%;
 }
+::selection {
+   background-color: #17D58F;
+   color: #141414;
+}

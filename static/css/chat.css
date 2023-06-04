@@ -26,6 +26,29 @@
    background-color: #141414;
    border-radius: 20px 0 0 0 ;
 }
+.form__left__chats {
+   display: flex;
+   justify-content: start;
+   align-items: start;
+   flex-direction: column;
+   width: 100%;
+   padding: 4px 10px;
+}
+.chat {
+   width: 100%;
+   padding: 10px 8px;
+   border-bottom: 2px solid  rgb(254,254,254,.4);
+   background-color: rgb(254,254,254,.1);
+   cursor: pointer;
+   width: 100%;
+   transition: all .3s linear;
+   color: white;
+}
+.chat:hover {
+   background-color: rgb(23, 213, 143, .9);
+   color: black ;
+}
+
 .header__left {
    display: flex;
    justify-content: center;
@@ -40,6 +63,30 @@
    height: 50px;
    object-fit: cover;
    border-radius: 10px;
+}
+.header__left__menu {
+   position: fixed;
+
+   top: 12vh;
+   background-color: #141414;
+
+   display: flex;
+   justify-content: start;
+   align-items: start;
+   flex-direction: column;
+
+   display: none;
+}
+.header__left__menu a {
+   color: white;
+   font-size: 20px;
+   transition: all .3s linear;
+   padding: 8px 22px;
+   width: 100%;
+}
+.header__left__menu a:hover {
+   background-color: #17d58f;
+   color: black;
 }
 .form form {
    width: 100%;
@@ -81,7 +128,6 @@
    justify-content: center;
    align-items: start;
    flex-direction: column;
-
 }
 .pre__messages__header__left section  b {
    font-size: 18px;
@@ -109,7 +155,13 @@
    max-width: 90%;
    min-width: 90%;
    background-color: #202020;
-   box-shadow: 0 0 10px 2px #17d58f;
+   box-shadow: 0 0 10px 2px #202020;
+}
+.pre__messages__form input:hover {
+   box-shadow: 0 0 10px 2px #17d58f ;
+}
+.pre__messages__form input:focus {
+   box-shadow: 0 0 10px 2px #17d58f ;
 }
 
 .messages {
@@ -157,9 +209,25 @@
    margin-bottom: 4px;
 }
 .icon {
-   color: black;
+   color: white;
    transition: all .3s linear;
+   padding: 6px;
+   border-radius: 100%;
+   cursor: pointer;
 }
 .icon:hover {
-   color: white;
+   color: #17d58f;
+   background-color: black;
+}
+.notFound {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   min-height: 70vh;
+}
+.notFound * {
+   color:  rgb(254,254,254,.4);
+   font-size: 33px;
 }
