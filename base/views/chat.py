@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
 
-from ..models import Chat, Message
+from ..models import Chat, Message, Profile
 from django.contrib.auth.models import User
 
 
@@ -43,8 +43,17 @@ def chat(request, slug):
    type = 'chat'
    
    one_chat = Chat.objects.get(slug=slug)
+   
+   if request.user == one_chat.user2:
+      profile_user2 = Profile.objects.get(user=one_chat.user1)
+   else:
+      profile_user2 = Profile.objects.get(user=one_chat.user2)
+      
    messages = Message.objects.filter(chat=one_chat)
    chats = Chat.objects.filter(Q(user1 =request.user) | Q(user2=request.user))
+   
+   print(profile_user2, profile_user2.image, profile_user2.user.username)
+   
    
    if request.method == 'POST':
       message = request.POST.get('message')
@@ -60,9 +69,10 @@ def chat(request, slug):
       'type': type,
       
       'one_chat': one_chat,
+      'profile_user2': profile_user2,
       'texts': messages,
       
-      'chats': chats
+      'chats': chats,
    }
    return render(request, 'base/Chat.html', context)
 

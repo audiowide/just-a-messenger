@@ -66,18 +66,18 @@
                   required>
                <button class="btn" type="submit">Create<button>
             </form>
-         {% else %}
+         {% elif type == 'chat' %}
         <div class="pre__messages">
          <div class="pre__messages__header">
             <div class="pre__messages__header__left">
                {% if request.user == one_chat.user1 %}
-               <img src="/media/{{one_chat.user2.profile.image}}" alt="{{one_chat.user2.profile.image}}">
+               <img src="/static/media/{{profile_user2.image}}" alt="{{profile_user2.image}}">
                <section class="data">
                   <b>{{one_chat.user2.username}}</b>
                   <p>{{one_chat.user2.email}}</p>
                </section>
                {% else %}
-               <img src="/media/{{one_chat.user1.profile.image}}" alt="{{one_chat.user2.profile.image}}">
+               <img src="/static/media/{{profile_user2.image}}" alt="{{profile_user2.image}}">
                <section class="data">
                   <b>{{one_chat.user1.username}}</b>
                   <p>{{one_chat.user1.email}}</p>
@@ -141,6 +141,35 @@
                </button>
          </form>
         </div>
+
+        {% elif type == 'settings' %}
+         <form method='POST' enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Update Info</h2>
+            <input 
+               type="text" 
+               name="username" 
+               placeholder="Enter your username..."
+               value = "{{ request.user.username }}"
+               required />
+            <input 
+               type="text" 
+               name="email" 
+               placeholder="Enter your email..."
+               value = "{{ request.user.email }}"
+               required />
+            {% if profile.image  %}
+               <img src="static/media/{{profile.image}}"  alt="{{profile.image}}" class="profile__image">
+            {% endif %}
+            <input
+               type = "file" 
+               name="image"
+             />
+             <textarea 
+               name="about" 
+               placeholder="talk about you...">{{profile.about}}</textarea>
+            <button class='btn'>save</button>
+         </form>
          {% endif %}
 
       </div>

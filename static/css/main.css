@@ -65,14 +65,20 @@ body::before {
    color: aliceblue;
    font-weight: bold;
 }
-input {
+input, textarea {
    padding:10px 10px;
    background-color: rgb(254,254,254,.07);
    color: aliceblue;
    font-size: 18px;
    border-radius: 10px;
    max-width: 400px;
+   width: 100%;
    transition: all .3s ease-in-out;
+}
+textarea {
+   max-width: 400px;
+   max-height: 150px;
+   min-height: 100px;
 }
 input:hover, input:focus {
    background-color: #17d58f28;
@@ -109,4 +115,12 @@ input:hover, input:focus {
 ::selection {
    background-color: #17D58F;
    color: #141414;
+}
+.profile__image {
+   object-fit: cover;
+   width: 100%;
+   max-width: 100px;
+   height: 100%;
+   max-height: 100px;
+   border-radius: 10px;
 }

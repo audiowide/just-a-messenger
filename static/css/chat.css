@@ -123,6 +123,12 @@
    align-items: center;
    gap: 7px;
 }
+.pre__messages__header__left img {
+   width: 40px;
+   height: 40px;
+   object-fit: cover;
+   border-radius: 100% !important;
+}
 .pre__messages__header__left section {
    display: flex;
    justify-content: center;
