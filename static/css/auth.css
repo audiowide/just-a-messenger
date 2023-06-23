@@ -30,6 +30,7 @@
    width: 50%;
    flex-direction: column;
    gap: 10px;
+   padding: 3% 5%;
 }
 .form form  h2 {
    margin-bottom: 10px;

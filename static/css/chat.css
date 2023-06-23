@@ -198,6 +198,7 @@
    transition: all .3s linear;
    font-size: 18px;
    width: 100% ;
+   max-width: 800px;
    border-bottom: 2px solid rgb(255,255,255,.4);
 }
 .mess:hover {

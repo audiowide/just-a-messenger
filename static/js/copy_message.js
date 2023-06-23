@@ -1,5 +1,3 @@
-console.log('copy_message.js is a worker');
-
 const copys = document.querySelectorAll('.copy')
 const text_for_copy = document.querySelectorAll('.text_for_copy')
 

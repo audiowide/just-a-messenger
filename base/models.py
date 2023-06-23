@@ -7,7 +7,7 @@ class Profile(models.Model):
    
    image = models.ImageField(upload_to='profile', 
                              validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png', 'svg', 'gif'])], 
-                             blank=True)
+                             default='/profile/default_profile.jpg')
    about = models.TextField(blank=True, max_length=100)
    
    blocked_users = models.ManyToManyField(User, blank=True, related_name='blocked_users')
@@ -33,5 +33,5 @@ class Message(models.Model):
    updated = models.DateTimeField(auto_now=True)
    
    def __str__(self):
-      return '{} - {} - {}'.format(self.chat.name, self.user.username, created)
+      return '{} - {} - {}'.format(self.chat.name, self.user.username, self.created)
    
