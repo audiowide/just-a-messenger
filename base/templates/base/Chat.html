@@ -57,6 +57,9 @@
       <div class="form__right">
 
          {% if type == 'create' %}
+
+         {% comment %} ______ create new chat ______ {% endcomment %}
+
             <form action="" method="POST" class="create_new_chate">
                {% csrf_token %}
                <input 
@@ -67,7 +70,11 @@
                <button class="btn" type="submit">Create<button>
             </form>
          {% elif type == 'chat' %}
+
+         {% comment %} _____ chat ______ {% endcomment %}
+
         <div class="pre__messages">
+         <input type="hidden" name="request-user" value="{{request.user}}" id="RequestUser" />
          <div class="pre__messages__header">
             <div class="pre__messages__header__left">
                {% if request.user == one_chat.user1 %}
@@ -92,48 +99,21 @@
                   ></a>
             </div>
          </div>
-         <div class="messages">
-            {% if texts|length != 0 %}
-            {% for message in texts %}
-               <div 
-               class="mess"
-               {% if message.user == request.user %}
-                  style="background-color: rgba(23, 213, 143, 1); color: black;"
-               {% endif %}
-            >
-            <div class="mess__content">
-               <p class="text_for_copy">{{message.message}}</p>
-               {% if message.user == request.user %}
-               <p>
-                  <a 
-                     class="fa-solid fa-trash icon"
-                     href="{% url 'base:message-delete' one_chat.slug message.id %}"
-                  ></a>
-                  <a class="fa-solid fa-copy icon copy" ></a>
-               </p>
-               {% endif %}
-            </div>
-            <p 
-            class="mess_time"
-            {% if message.user == request.user %}
-               style="color: rgb(0,0,0,.7)"
-            {% endif %}
-            >{{ message.updated }}</p>
-            </div>
-            {% endfor %}
-            {% else %}
-            <div class="notFound">
-               <h2>Messages Not Found</h2>
-               <i class="fa-solid fa-comment-slash"></i>
-            </div>
-            {% endif %}
-         </div>
-         <form action="" method="POST" class="pre__messages__form">
+
+         <input 
+            type='hidden'
+            id ='chatSlug' 
+            value='{{ one_chat.slug }}'
+         />
+         <div class="messages" id ='MessagesList'></div>
+
+         <form class="pre__messages__form" id="addNewMessage">
              {% csrf_token %}
              <input 
                type="text" 
-               name="message" 
+               name="text" 
                placeholder="Enter your message..."
+               id = 'MessageCreateInput'
                required
                />
                <button type="submit" class="btn">
@@ -143,6 +123,9 @@
         </div>
 
         {% elif type == 'settings' %}
+
+        {% comment %} _____ settings _____ {% endcomment %}
+
          <form method='POST' enctype="multipart/form-data">
             {% csrf_token %}
             <h2>Update Info</h2>
@@ -176,7 +159,7 @@
 
    </div>
 </div>
+<script src="{% static 'js/crud_message.js' %}"></script>
 <script src="{% static 'js/copy_message.js' %}"></script>
 <script src="{% static 'js/show_menu.js' %}"></script>
-<script src="{% static 'js/create_messages.js' %}"></script>
 {% endblock content %}

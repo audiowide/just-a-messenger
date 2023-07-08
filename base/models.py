@@ -33,5 +33,5 @@ class Message(models.Model):
    updated = models.DateTimeField(auto_now=True)
    
    def __str__(self):
-      return '{} - {} - {}'.format(self.chat.name, self.user.username, self.created)
+      return '{} - {}'.format(self.user.username, self.created)
    

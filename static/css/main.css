@@ -85,11 +85,11 @@ input:hover, input:focus {
    box-shadow: 1px 1px 10px 0px #17D58F;
 }
 
-.messages {
+.notions {
    position: fixed;
 
 }
-.message {
+.notion {
    position: fixed;
    top:5vh;
    z-index: 10;
@@ -108,7 +108,7 @@ input:hover, input:focus {
    box-shadow: 0 0 10px 0px #17D58F;
 }
 
-.message .message_close:hover {
+.notion .message_close:hover {
    color: #17D58F;
    background-color: #141414;
    border-radius: 100%;

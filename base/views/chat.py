@@ -52,25 +52,21 @@ def chat(request, slug):
    messages = Message.objects.filter(chat=one_chat)
    chats = Chat.objects.filter(Q(user1 =request.user) | Q(user2=request.user))
    
-   print(profile_user2, profile_user2.image, profile_user2.user.username)
-   
-   
-   if request.method == 'POST':
-      message = request.POST.get('message')
+   # if request.method == 'POST':
+   #    message = request.POST.get('message')
       
-      message = Message.objects.create(
-         chat = one_chat,
-         user = request.user,
-         message = message,
-      )
-      return redirect('base:chat', one_chat.slug)
+   #    message = Message.objects.create(
+   #       chat = one_chat,
+   #       user = request.user,
+   #       message = message,
+   #    )
+   #    return redirect('base:chat', one_chat.slug)
          
    context = {
       'type': type,
       
       'one_chat': one_chat,
       'profile_user2': profile_user2,
-      'texts': messages,
       
       'chats': chats,
    }

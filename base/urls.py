@@ -16,5 +16,5 @@ urlpatterns = [
    path('chats/<str:slug>', chat.chat, name='chat'),
    
    path('chats/<str:slug>/delete', chat.chat_delete, name='chat-delete'),
-   path('chats/<str:slug>/messages/<int:message_id>/', chat.message_delete, name='message-delete'),
+   path('messages/<int:message_id>/delete', chat.message_delete, name='message-delete'),
 ]

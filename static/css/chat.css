@@ -6,7 +6,7 @@
 
 .form__left {
    width: 100%;
-   max-width: 400px;
+   max-width: 300px;
    background-color: rgb(254,254,254,.05);
    min-height: 90vh;
    height: 100%;
@@ -43,6 +43,7 @@
    width: 100%;
    transition: all .3s linear;
    color: white;
+   font-size: 16px;
 }
 .chat:hover {
    background-color: rgb(23, 213, 143, .9);
@@ -159,6 +160,7 @@
 .pre__messages__form input {
    width: 100%;
    max-width: 90%;
+   font-size: 18px;
    min-width: 90%;
    background-color: #202020;
    box-shadow: 0 0 10px 2px #202020;
@@ -192,7 +194,7 @@
    background-color: #17d58f;;
 }
 
-.mess {
+.write {
    background-color: rgb(254,254,254,.15);
    padding: 6px 8px;
    transition: all .3s linear;
@@ -201,16 +203,16 @@
    max-width: 800px;
    border-bottom: 2px solid rgb(255,255,255,.4);
 }
-.mess:hover {
+.write:hover {
    background-color: rgb(254,254,254,.25);
 }
-.mess_time {
+.write_time {
    width: 100%;
    text-align: right;
    font-size: 14px;
    color: rgb(254,254,254,.6)
 }
-.mess__content {
+.write__content {
    display: flex;
    justify-content: space-between;
    margin-bottom: 4px;
@@ -237,4 +239,56 @@
 .notFound * {
    color:  rgb(254,254,254,.4);
    font-size: 33px;
+}
+
+/* message */
+.message {
+   border-bottom: 1px solid rgb(254,254,254,.05);
+   width: 100%;
+   padding: 6px 8px;
+   transition: all .3s linear;
+   /* animation: message-show 1s linear; */
+}
+.message__header {
+   display: flex;
+   justify-content: space-between;
+   align-items: start;
+   margin-top: 4px;
+   gap: 10px;
+   width: 100%;
+}
+.message p {
+   width: 100%;
+}
+.message__header span {
+   color:  rgb(254,245, 245,.5);
+   font-size: 14px;
+}
+.message__header div {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   gap: 6px;
+}
+.message__header div i {
+   font-size: 14px;
+   color:  rgb(254,245, 245,.5);
+   transition: all .3s linear;
+   padding: 6px;
+}
+.message__header div i:hover {
+   color: #17d58f;
+   cursor: pointer;
+   border-radius: 100%;
+   background-color: rgb(254,254,254,.2);
+}
+
+@keyframes message-show  {
+   0% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 1;
+   }
 }
